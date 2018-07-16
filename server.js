@@ -24,7 +24,9 @@ app.get('/list', function(req,res) {
 })
 
 app.post('/list', function(req,res) {
-    console.log(req);
+    console.log(JSON.stringify(req.route.stack));
+    const myquery = '';
+    const newvalues = '';
 
     db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
         if (err) throw err;
