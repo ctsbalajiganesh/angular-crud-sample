@@ -2,6 +2,7 @@ var MongoClient = require('mongodb').MongoClient
 var assert = require('assert')
 var express = require('express')
 var app = express()
+const bodyParser = require("body-parser");
 
 var db = null
 MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingdb', function(err,database) {
@@ -21,8 +22,10 @@ app.get('/list', function(req,res) {
     })
 })
 
+app.use(bodyParser.json());
+
 app.post('/list/update', function(req,res) {
-    console.log('REQ', req, 'RES', res);
+    console.log('REQ', req.body);
     // const myquery = '';
     // const newvalues = '';
 
