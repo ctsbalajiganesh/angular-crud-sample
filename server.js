@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingd
 })
 
 app.get('/app', function(req, res) {
-    res.sendfile('./index.html');
+    res.sendFile('./index.html' , { root : __dirname});
 });
 
 // app.get('/', function(req,res) {
