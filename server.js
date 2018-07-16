@@ -25,12 +25,10 @@ app.get('/list', function(req,res) {
 app.use(bodyParser.json());
 
 app.post('/list/update', function(req,res) {
-    console.log('REQ', req.body);
     const itemId = {
         _id: req.body._id,
     }
     const newValue = {
-        _id: req.body._id,
         name: req.body.name,
         dob: req.body.dob,
     };
