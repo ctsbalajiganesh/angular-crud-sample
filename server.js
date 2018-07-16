@@ -16,7 +16,3 @@ app.get('/', function(req,res) {
         res.send(JSON.stringify(doc))
     })
 })
-
-app.listen(8090, function() {
-    console.log('Listening on port 3000')
-})
