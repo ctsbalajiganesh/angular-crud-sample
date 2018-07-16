@@ -5,7 +5,6 @@ var app = express()
 
 var db = null
 MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingdb', function(err,database) {
-    console.log('ERROR', err);
     db = database
 })
 
@@ -22,8 +21,8 @@ app.get('/list', function(req,res) {
     })
 })
 
-app.post('/list', function(req,res) {
-    console.log('REQ', req.body);
+app.post('/list/update', function(req,res) {
+    console.log('REQ', req, 'RES', res);
     // const myquery = '';
     // const newvalues = '';
 

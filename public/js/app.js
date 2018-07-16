@@ -26,7 +26,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
             }
             $http({
                 method: 'POST',
-                url: '/list',
+                url: '/list/update',
                 data: updateData,
             }).then(function (response){
                 console.log('edit response', response);
