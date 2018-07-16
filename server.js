@@ -23,6 +23,16 @@ app.get('/list', function(req,res) {
     })
 })
 
+app.post('/list', function(req,res) {
+    console.log(req);
+
+    db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated", res);
+        db.close();
+      });
+})
+
 app.listen(process.env.PORT || 8090, function() {
     console.log('Listening on port 8090')
 })

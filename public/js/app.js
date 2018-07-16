@@ -3,6 +3,8 @@ var studentsApp = angular.module('studentsApp', []);
 studentsApp.controller('StudentsListController', function StudentsListController($scope, $http){
     $scope.currentPage = 0;
     $scope.viewSize = 5;
+    $scope.editForm = false;
+    $scope.editId = '';
     
     $http({
         method: 'GET',
@@ -15,15 +17,34 @@ studentsApp.controller('StudentsListController', function StudentsListController
     });
 
     $scope.submitForm = function() {
-        const studentsData = $scope.students;
-        const dataLength = ('0'+($scope.students.length+1)).slice(-2);
-        const newData = {
-            id: `S${dataLength}`,
-            name: $scope.name,
-            dob: $scope.dateOfBirth,
+
+        if ($scope.editForm) {
+            const updateData = {
+                id: $scope.editId,
+                name: $scope.name,
+                dob: $scope.dateOfBirth,
+            }
+            $http({
+                method: 'POST',
+                url: '/list',
+                data: updateData,
+            }).then(function (response){
+                console.log('edit response', response);
+            },function (error){
+                console.log('Error: ' + error);
+            });
+            $scope.editForm = false;
+        } else {
+            const studentsData = $scope.students;
+            const dataLength = ('0'+($scope.students.length+1)).slice(-2);
+            const newData = {
+                id: `S${dataLength}`,
+                name: $scope.name,
+                dob: $scope.dateOfBirth,
+            }
+            studentsData.push(newData);
+            $scope.students = studentsData;
         }
-        studentsData.push(newData);
-        $scope.students = studentsData;
         $scope.resetForm();
     }
 
@@ -38,6 +59,8 @@ studentsApp.controller('StudentsListController', function StudentsListController
         });
         $scope.name = currentItem.name;
         $scope.dateOfBirth = currentItem.dob;
+        $scope.editForm = true;
+        $scope.editId = id;
     }
 });
 
