@@ -35,8 +35,18 @@ app.post('/list/update', function(req,res) {
 
     db.collection("studentsList").updateOne(itemId, newValue, function(err, res) {
         if (err) throw err;
-        console.log("1 document updated", res);
-        db.close();
+        console.log("1 document updated");
+    });
+})
+
+app.delete('/list/delete', function(req,res) {
+    const itemId = {
+        _id: req.body._id,
+    }
+
+    db.collection("studentsList").remove(itemId, function(err, res) {
+        if (err) throw err;
+        console.log("1 item removed");
     });
 })
 

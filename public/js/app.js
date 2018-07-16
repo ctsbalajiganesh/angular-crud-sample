@@ -11,7 +11,6 @@ studentsApp.controller('StudentsListController', function StudentsListController
         url: '/list'
     }).then(function (response){
         $scope.students = response.data;
-        console.log(response);
     },function (error){
         console.log('Error: ' + error);
     });
@@ -61,6 +60,21 @@ studentsApp.controller('StudentsListController', function StudentsListController
         $scope.dateOfBirth = currentItem.dob;
         $scope.editFormFlag = true;
         $scope.editId = currentItem._id;
+    }
+
+    $scope.deleteItem = function(id) {
+        const deleteData = {
+            _id: $scope.editId,
+        }
+        $http({
+            method: 'DELETE',
+            url: '/list/delete',
+            data: deleteData,
+        }).then(function (response){
+            console.log('delete response', response);
+        },function (error){
+            console.log('Error: ' + error);
+        });
     }
 });
 
