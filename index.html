@@ -28,7 +28,7 @@
             <tbody>
                 <tr ng-repeat='student in students | pagination: currentPage * viewSize | limitTo: viewSize'>
                     <td>{{(currentPage * viewSize) + ($index + 1)}}.</td>
-                    <td>{{student.id}}</td>
+                    <td>{{student._id}}</td>
                     <td>{{student.name}}</td>
                     <td>{{student.dob}}</td>
                     <td>

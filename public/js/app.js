@@ -20,7 +20,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
 
         if ($scope.editFormFlag) {
             const updateData = {
-                id: $scope.editId,
+                _id: $scope.editId,
                 name: $scope.name,
                 dob: $scope.dateOfBirth,
             }
@@ -38,7 +38,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
             const studentsData = $scope.students;
             const dataLength = ('0'+($scope.students.length+1)).slice(-2);
             const newData = {
-                id: `S${dataLength}`,
+                _id: `S${dataLength}`,
                 name: $scope.name,
                 dob: $scope.dateOfBirth,
             }
@@ -55,12 +55,12 @@ studentsApp.controller('StudentsListController', function StudentsListController
 
     $scope.editForm = function(id) {
         const currentItem = $scope.students.find(function(item) {
-            return item.id == id;
+            return item._id == id;
         });
         $scope.name = currentItem.name;
         $scope.dateOfBirth = currentItem.dob;
         $scope.editFormFlag = true;
-        $scope.editId = currentItem.id;
+        $scope.editId = currentItem._id;
     }
 });
 
