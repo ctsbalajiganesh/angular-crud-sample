@@ -3,7 +3,7 @@ var studentsApp = angular.module('studentsApp', []);
 studentsApp.controller('StudentsListController', function StudentsListController($scope, $http){
     $scope.currentPage = 0;
     $scope.viewSize = 5;
-    $scope.editForm = false;
+    $scope.editFormFlag = false;
     $scope.editId = '';
     
     $http({
@@ -18,7 +18,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
 
     $scope.submitForm = function() {
 
-        if ($scope.editForm) {
+        if ($scope.editFormFlag) {
             const updateData = {
                 id: $scope.editId,
                 name: $scope.name,
@@ -33,7 +33,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
             },function (error){
                 console.log('Error: ' + error);
             });
-            $scope.editForm = false;
+            $scope.editFormFlag = false;
         } else {
             const studentsData = $scope.students;
             const dataLength = ('0'+($scope.students.length+1)).slice(-2);
@@ -59,7 +59,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
         });
         $scope.name = currentItem.name;
         $scope.dateOfBirth = currentItem.dob;
-        $scope.editForm = true;
+        $scope.editFormFlag = true;
         $scope.editId = id;
     }
 });

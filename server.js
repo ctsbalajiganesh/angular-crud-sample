@@ -26,14 +26,18 @@ app.use(bodyParser.json());
 
 app.post('/list/update', function(req,res) {
     console.log('REQ', req.body);
-    // const myquery = '';
-    // const newvalues = '';
+    const myquery = req.body.id;
+    const newvalues = {
+        id: req.body.id,
+        name: req.body.name,
+        dob: req.body.dob,
+    };
 
-    // db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
-    //     if (err) throw err;
-    //     console.log("1 document updated", res);
-    //     db.close();
-    //   });
+    db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated", res);
+        db.close();
+    });
 })
 
 app.listen(process.env.PORT || 8090, function() {
