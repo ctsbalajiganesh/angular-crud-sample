@@ -10,12 +10,16 @@ MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingd
     console.log('DB', db);
 })
 
-app.get('/', function(req,res) {
-    db.collection('list').find({}).toArray(function(err,doc) {
-        assert.equal(err,null)
-        res.send(JSON.stringify(doc))
-    })
-})
+app.get('*', function(req, res) {
+    res.sendfile('./index.html');
+});
+
+// app.get('/', function(req,res) {
+//     db.collection('list').find({}).toArray(function(err,doc) {
+//         assert.equal(err,null)
+//         res.send(JSON.stringify(doc))
+//     })
+// })
 
 app.listen(process.env.PORT || 8090, function() {
     console.log('Listening on port 8090')
