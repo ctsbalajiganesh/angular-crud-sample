@@ -10,6 +10,8 @@ MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingd
     console.log('DB', db);
 })
 
+app.use(express.static('public'));
+
 app.get('/app', function(req, res) {
     res.sendfile('./index.html' , { root : __dirname});
 });
