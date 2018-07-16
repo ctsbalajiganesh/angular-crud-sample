@@ -64,7 +64,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
 
     $scope.deleteItem = function(id) {
         const deleteData = {
-            _id: $scope.editId,
+            _id: id,
         }
         $http({
             method: 'DELETE',
