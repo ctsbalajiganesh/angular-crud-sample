@@ -1,8 +1,18 @@
 var studentsApp = angular.module('studentsApp', []);
 
-studentsApp.controller('StudentsListController', function StudentsListController($scope){
+studentsApp.controller('StudentsListController', function StudentsListController($scope, $http){
     $scope.currentPage = 0;
     $scope.viewSize = 5;
+
+    $http.get('/list')
+        .success(function(data) {
+            $scope.students = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+
     $scope.students = [
         {
             id: 'S01',

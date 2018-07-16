@@ -16,12 +16,12 @@ app.get('/app', function(req, res) {
     res.sendfile('./index.html' , { root : __dirname});
 });
 
-// app.get('/', function(req,res) {
-//     db.collection('list').find({}).toArray(function(err,doc) {
-//         assert.equal(err,null)
-//         res.send(JSON.stringify(doc))
-//     })
-// })
+app.get('/list', function(req,res) {
+    db.collection('studentsList').find({}).toArray(function(err, data) {
+        assert.equal(err,null)
+        res.send(JSON.stringify(data))
+    })
+})
 
 app.listen(process.env.PORT || 8090, function() {
     console.log('Listening on port 8090')
