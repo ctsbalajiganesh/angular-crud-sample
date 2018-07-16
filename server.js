@@ -30,7 +30,7 @@ app.post('/list/update', function(req,res) {
         _id: req.body._id,
     }
     const newValue = {
-        id: req.body._id,
+        _id: req.body._id,
         name: req.body.name,
         dob: req.body.dob,
     };
