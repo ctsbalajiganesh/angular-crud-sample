@@ -7,7 +7,6 @@ var db = null
 MongoClient.connect('mongodb://master:master123@ds231501.mlab.com:31501/learingdb', function(err,database) {
     console.log('ERROR', err);
     db = database
-    console.log('DB', db);
 })
 
 app.use(express.static('public'));
@@ -24,8 +23,8 @@ app.get('/list', function(req,res) {
 })
 
 app.post('/list', function(req,res) {
-    console.log('REQ', JSON.stringify(req));
-    console.log('RES', JSON.stringify(res));
+    console.log('REQ', req);
+    console.log('RES', res);
     // const myquery = '';
     // const newvalues = '';
 
