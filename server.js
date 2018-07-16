@@ -23,8 +23,7 @@ app.get('/list', function(req,res) {
 })
 
 app.post('/list', function(req,res) {
-    console.log('REQ', req);
-    console.log('RES', res);
+    console.log('REQ', req.body);
     // const myquery = '';
     // const newvalues = '';
 
