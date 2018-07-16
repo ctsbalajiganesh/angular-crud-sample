@@ -24,15 +24,16 @@ app.get('/list', function(req,res) {
 })
 
 app.post('/list', function(req,res) {
-    console.log(JSON.stringify(req.route.stack));
-    const myquery = '';
-    const newvalues = '';
+    console.log('REQ', JSON.stringify(req));
+    console.log('RES', JSON.stringify(res));
+    // const myquery = '';
+    // const newvalues = '';
 
-    db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
-        if (err) throw err;
-        console.log("1 document updated", res);
-        db.close();
-      });
+    // db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("1 document updated", res);
+    //     db.close();
+    //   });
 })
 
 app.listen(process.env.PORT || 8090, function() {
