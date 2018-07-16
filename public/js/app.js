@@ -8,44 +8,11 @@ studentsApp.controller('StudentsListController', function StudentsListController
         method: 'GET',
         url: '/list'
     }).then(function (response){
-        $scope.students = response;
+        $scope.students = response.data;
         console.log(response);
     },function (error){
         console.log('Error: ' + error);
     });
-
-    $scope.students = [
-        {
-            id: 'S01',
-            name: 'Ben',
-            dob: '01/19/1994',
-        },
-        {
-            id: 'S02',
-            name: 'Jack',
-            dob: '12/15/1995',
-        },
-        {
-            id: 'S03',
-            name: 'Mary',
-            dob: '05/25/1994',
-        },
-        {
-            id: 'S04',
-            name: 'Tiffany',
-            dob: '03/02/1996',
-        },
-        {
-            id: 'S05',
-            name: 'Beth',
-            dob: '08/12/1995',
-        },
-        {
-            id: 'S06',
-            name: 'Tim',
-            dob: '10/30/1995',
-        },
-    ];
 
     $scope.submitForm = function() {
         const studentsData = $scope.students;
