@@ -26,14 +26,14 @@ app.use(bodyParser.json());
 
 app.post('/list/update', function(req,res) {
     console.log('REQ', req.body);
-    const myquery = req.body.id;
-    const newvalues = {
+    const itemId = req.body.id;
+    const newValue = {
         id: req.body.id,
         name: req.body.name,
         dob: req.body.dob,
     };
 
-    db.collection("studentsList").updateOne(myquery, newvalues, function(err, res) {
+    db.collection("studentsList").updateOne(itemId, newValue, function(err, res) {
         if (err) throw err;
         console.log("1 document updated", res);
         db.close();

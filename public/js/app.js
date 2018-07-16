@@ -60,7 +60,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
         $scope.name = currentItem.name;
         $scope.dateOfBirth = currentItem.dob;
         $scope.editFormFlag = true;
-        $scope.editId = id;
+        $scope.editId = currentItem.id;
     }
 });
 
