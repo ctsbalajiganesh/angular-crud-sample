@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <title>Students App</title>
+  </head>
+  <body ng-app="studentsApp">
+    <div class="container-fluid" ng-controller="StudentsListController">
+        <h3 class="page-title">Students Details</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">S.No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='student in students | pagination: currentPage * viewSize | limitTo: viewSize'>
+                    <td>{{(currentPage * viewSize) + ($index + 1)}}.</td>
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.dob}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" ng-click="editForm(student.id)">Edit</button>
+                        <button type="button" class="btn btn-danger" >Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0"
+                ng-click="currentPage=currentPage-1">
+                    <span aria-hidden="true">&laquo;</span>
+                </button>
+                <button class="btn btn-primary" ng-disabled="currentPage >= students.length/viewSize - 1"
+                ng-click="currentPage = currentPage+1">
+                    <span aria-hidden="true">&raquo;</span>
+                </button>
+            </ul>
+        </nav>
+
+        <h3 class="page-title">Enter Details</h3>
+
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Student's Name</label>
+                    <input class="form-control" type="text" placeholder="Name" ng-model="name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Student's DOB</label>
+                    <input class="form-control" type="text" placeholder="MM/DD/YYYY" ng-model="dateOfBirth">
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="submitForm()">Submit</button>
+                <button type="button" class="btn btn-secondary" ng-click="resetForm()">Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

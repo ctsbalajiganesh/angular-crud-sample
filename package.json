@@ -1,0 +1,10 @@
+{
+    "name": "Students-List",
+    "version": "0.0.0",
+    "description": "Simple assignment.",
+    "main": "server.js",
+    "dependencies": {
+        "express": "~4.7.2",
+        "mongojs": "^2.6.0"
+    }
+}
