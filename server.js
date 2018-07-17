@@ -36,8 +36,9 @@ app.post('/list/update', function(req,res) {
     db.collection("studentsList").updateOne(itemId, newValue, function(err, res) {
         if (err) throw err;
         console.log("1 document updated");
-        res.status(204);
     });
+
+    res.status(204).end();
 })
 
 app.delete('/list/delete', function(req,res) {
@@ -45,15 +46,11 @@ app.delete('/list/delete', function(req,res) {
         _id: req.body._id,
     }
 
-    const value = {
-        justOne: true,
-    }
-
-    db.collection("studentsList").remove(itemId, value, function(err, res) {
+    db.collection("studentsList").deletOne(itemId, function(err, res) {
         if (err) throw err;
         console.log("1 item removed");
-        res.status(204);
     });
+    res.status(204).end();
 })
 
 app.listen(process.env.PORT || 8090, function() {
