@@ -36,6 +36,7 @@ app.post('/list/update', function(req,res) {
     db.collection("studentsList").updateOne(itemId, newValue, function(err, res) {
         if (err) throw err;
         console.log("1 document updated");
+        res.status(204);
     });
 })
 
@@ -51,6 +52,7 @@ app.delete('/list/delete', function(req,res) {
     db.collection("studentsList").remove(itemId, value, function(err, res) {
         if (err) throw err;
         console.log("1 item removed");
+        res.status(204);
     });
 })
 
