@@ -46,7 +46,7 @@ app.delete('/list/delete', function(req,res) {
         _id: req.body._id,
     }
 
-    db.collection("studentsList").deleteOne(itemId, function(err, res) {
+    db.collection("studentsList").remove(itemId, function(err, res) {
         if (err) throw err;
         console.log("1 item removed");
     });

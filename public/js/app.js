@@ -75,7 +75,9 @@ studentsApp.controller('StudentsListController', function StudentsListController
             url: '/list/delete',
             data: deleteData,
         }).then(function (response){
-            console.log('delete response', response);
+            if (response.status === 204) {
+                $scope.getStudentsList();
+            }
         },function (error){
             console.log('Error: ' + error);
         });
