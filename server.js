@@ -48,9 +48,7 @@ app.delete('/list/:_id', function(req,res) {
     }
 
     db.collection("studentsList").deleteOne(itemId, function(err) {
-        if (err) {
-            return err;
-        }
+        if (err) return err;
         console.log("1 item removed");
     });
     res.status(204).end();
