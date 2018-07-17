@@ -5,6 +5,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
     $scope.viewSize = 5;
     $scope.editFormFlag = false;
     $scope.editId = '';
+    $scope.displayId = '';
     
     $scope.getStudentsList = function() {
         $http({
@@ -22,6 +23,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
         if ($scope.editFormFlag) {
             const updateData = {
                 _id: $scope.editId,
+                displayId: $scope.displayId,
                 name: $scope.name,
                 dob: $scope.dateOfBirth,
             }
@@ -41,7 +43,7 @@ studentsApp.controller('StudentsListController', function StudentsListController
             const studentsData = $scope.students;
             const dataLength = ('0'+($scope.students.length+1)).slice(-2);
             const newData = {
-                _id: `S${dataLength}`,
+                displayId: `S${dataLength}`,
                 name: $scope.name,
                 dob: $scope.dateOfBirth,
             }
@@ -64,16 +66,18 @@ studentsApp.controller('StudentsListController', function StudentsListController
         $scope.dateOfBirth = currentItem.dob;
         $scope.editFormFlag = true;
         $scope.editId = currentItem._id;
+        $scope.displayId = currentItem.displayId;
     }
 
     $scope.deleteItem = function(id) {
         const deleteData = {
-            _id: id,
+            body: {
+                id,
+            }
         }
         $http({
             method: 'DELETE',
-            url: '/list/delete',
-            data: deleteData,
+            url: '/list/' + id,
         }).then(function (response){
             if (response.status === 204) {
                 $scope.getStudentsList();

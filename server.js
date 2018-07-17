@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient
+var ObjectId = require('mongodb').ObjectID;
 var assert = require('assert')
 var express = require('express')
 var app = express()
@@ -26,28 +27,31 @@ app.use(bodyParser.json());
 
 app.post('/list/update', function(req,res) {
     const itemId = {
-        _id: req.body._id,
+        _id: ObjectId(req.body._id),
     }
     const newValue = {
+        displayId: req.body.displayId,
         name: req.body.name,
         dob: req.body.dob,
     };
 
     db.collection("studentsList").updateOne(itemId, newValue, function(err, res) {
-        if (err) throw err;
+        if (err) return err;
         console.log("1 document updated");
     });
-
     res.status(204).end();
 })
 
-app.delete('/list/delete', function(req,res) {
+app.delete('/list/:_id', function(req,res) {
+    console.log(req.params._id)
     const itemId = {
-        _id: req.body._id,
+        _id: ObjectId(req.params._id),
     }
 
-    db.collection("studentsList").remove(itemId, function(err, res) {
-        if (err) throw err;
+    db.collection("studentsList").deleteOne(itemId, function(err) {
+        if (err) {
+            return err;
+        }
         console.log("1 item removed");
     });
     res.status(204).end();
