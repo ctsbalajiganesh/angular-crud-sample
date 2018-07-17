@@ -43,7 +43,6 @@ app.post('/list/update', function(req,res) {
 })
 
 app.delete('/list/:_id', function(req,res) {
-    console.log(req.params._id)
     const itemId = {
         _id: ObjectId(req.params._id),
     }

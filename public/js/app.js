@@ -56,6 +56,9 @@ studentsApp.controller('StudentsListController', function StudentsListController
     $scope.resetForm = function() {
         $scope.name = '';
         $scope.dateOfBirth = '';
+        $scope.editFormFlag = false;
+        $scope.editId = '';
+        $scope.displayId = '';
     }
 
     $scope.editForm = function(id) {
