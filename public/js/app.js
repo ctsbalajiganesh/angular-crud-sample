@@ -6,14 +6,16 @@ studentsApp.controller('StudentsListController', function StudentsListController
     $scope.editFormFlag = false;
     $scope.editId = '';
     
-    $http({
-        method: 'GET',
-        url: '/list'
-    }).then(function (response){
-        $scope.students = response.data;
-    },function (error){
-        console.log('Error: ' + error);
-    });
+    $scope.getStudentsList = function() {
+        $http({
+            method: 'GET',
+            url: '/list'
+        }).then(function (response){
+            $scope.students = response.data;
+        },function (error){
+            console.log('Error: ' + error);
+        });
+    }
 
     $scope.submitForm = function() {
 
@@ -28,7 +30,9 @@ studentsApp.controller('StudentsListController', function StudentsListController
                 url: '/list/update',
                 data: updateData,
             }).then(function (response){
-                console.log('edit response', response);
+                if (response.status === 204) {
+                    $scope.getStudentsList();
+                }
             },function (error){
                 console.log('Error: ' + error);
             });
@@ -76,6 +80,8 @@ studentsApp.controller('StudentsListController', function StudentsListController
             console.log('Error: ' + error);
         });
     }
+
+    $scope.getStudentsList();
 });
 
 studentsApp.filter('pagination', function() {
